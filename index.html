@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ไตรภูมิพระร่วง</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="images/logo.png" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
+        <h1>ไตรภูมิพระร่วง/h1>
+      </div>
+
+      <div class="head">
+        <p>Moves: <span class="Moves">0</span></p>
+        <p class="timer">เวลา: <span id="countdown">2:00</span></p>
+        <button type="button" class="restert">Restart</button>
+      </div>
+
+      <div class="memory-game">
+        <!-- Card 1 -->
+        <div class="memory-card" data-category="Amoungus-1">
+          <img src="images/logo.png" alt="frontface" class="frontface" />
+          <img src="images/among-1.png" alt="backface" class="backface" />
+        </div>
+        <!-- Card 2 -->
+        <div class="memory-card" data-category="Amoungus-1">
+          <img src="images/logo.png" alt="frontface" class="frontface" />
+          <img src="images/among-1s.png" alt="backface" class="backface" />
+        </div>
+        <!-- Card 3 -->
+        <div class="memory-card" data-category="Amoungus-2">
+          <img src="images/logo.png" alt="frontface" class="frontface" />
+          <img src="images/among-2s.png" alt="backface" class="backface" />
+        </div>
+        <!-- Card 4 -->
+        <div class="memory-card" data-category="Amoungus-2">
+          <img src="images/logo.png" alt="frontface" class="frontface" />
+          <img src="images/among-2.png" alt="backface" class="backface" />
+        </div>
+        <!-- Card 5 -->
+        <div class="memory-card" data-category="Amoungus-3">
+          <img src="images/logo.png" alt="frontface" class="frontface" />
+          <img src="images/among-3.png" alt="backface" class="backface" />
+        </div>
+        <!-- Card 6 -->
+        <div class="memory-card" data-category="Amoungus-3">
+          <img src="images/logo.png" alt="frontface" class="frontface" />
+          <img src="images/among-3s.png" alt="backface" class="backface" />
+        </div>
+        <!-- Card 7 -->
+        <div class="memory-card" data-category="Amoungus-4">
+          <img src="images/logo.png" alt="frontface" class="frontface" />
+          <img src="images/among-4.png" alt="backface" class="backface" />
+        </div>
+        <!-- Card 8 -->
+        <div class="memory-card" data-category="Amoungus-4">
+          <img src="images/logo.png" alt="frontface" class="frontface" />
+          <img src="images/among-4s.png" alt="backface" class="backface" />
+        </div>
+        <!-- Card 9 -->
+        <div class="memory-card" data-category="Amoungus-5">
+          <img src="images/logo.png" alt="frontface" class="frontface" />
+          <img src="images/among-5.png" alt="backface" class="backface" />
+        </div>
+        <!-- Card 10 -->
+        <div class="memory-card" data-category="Amoungus-5">
+          <img src="images/logo.png" alt="frontface" class="frontface" />
+          <img src="images/among-5s.png" alt="backface" class="backface" />
+        </div>
+        <!-- Card 11 -->
+        <div class="memory-card" data-category="Amoungus-6">
+          <img src="images/logo.png" alt="frontface" class="frontface" />
+          <img src="images/among-6.png" alt="backface" class="backface" />
+        </div>
+        <!-- Card 12 -->
+        <div class="memory-card" data-category="Amoungus-6">
+          <img src="images/logo.png" alt="frontface" class="frontface" />
+          <img src="images/among-6s.png" alt="backface" class="backface" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Game Over -->
+    <div class="modal visibilty">
+      <div><h2>ยินดีด้วย!!!</h2></div>
+      <div>
+        <p>
+          คุณจบเกมใน <span class="move-model"></span> ครั้ง และ
+          <span class="second-model"></span> วินาที
+        </p>
+      </div>
+    </div>
+
+    <!-- Modal for Game Over -->
+    <div class="modal GameOver visibilty">
+      <div><h2>จบเกม</h2></div>
+      <div><p>เวลาหมด!</p></div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay visibilty"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
