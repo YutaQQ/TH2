@@ -67,24 +67,22 @@ const closeModal = () => {
 };
 
 // Start the countdown timer
-function startTimer(){
+function startTimer() {
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+  seconds = seconds < 10 ? '0' + seconds : seconds;
 
-    const minutes= Math.floor(time / 60);
-    let seconds = time % 60;
-    seconds= seconds<10 ?'0'+seconds : seconds;
-    let timeover=`${minutes}:${seconds}`;
-    countdown.innerHTML=timeover
-    time--;
-    
-    if(timeover==='0:00'){
-        musicAudio.pause();
-        loseAudio.play();
-       gameOverModel.classList.remove('visibilty');
-       overly.classList.remove('visibilty'); 
-       clearInterval(interval);
-       correct=0;
-    }
-    
+  countdown.innerHTML = `${minutes}:${seconds}`;
+  time--; // Decrement the time
+
+  if (time < 0) { // Trigger game over when time runs out
+    musicAudio.pause();
+    loseAudio.play();
+    gameOverModal.classList.remove('visibilty');
+    overlay.classList.remove('visibilty');
+    clearInterval(interval); // Stop the timer
+    correctMatches = 0; // Reset matches for the next game
+  }
 }
 // Reset the board after a match or flip
 function resetBoard() {
