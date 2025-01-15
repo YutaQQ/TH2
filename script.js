@@ -67,23 +67,25 @@ const closeModal = () => {
 };
 
 // Start the countdown timer
-function startTimer() {
-  if (time <= 0) { // Stop the timer when it runs out
-    clearInterval(interval);
-    musicAudio.pause();
-    loseAudio.play();
-    gameOverModal.classList.remove('visibility');
-    overlay.classList.remove('visibility');
-    return;
-  }
+function startTimer(){
 
-  const minutes = Math.floor(time / 60);
-  let seconds = time % 60;
-  seconds = seconds < 10 ? '0' + seconds : seconds;
-  countdown.innerHTML = `${minutes}:${seconds}`;
-  time--; // Decrement the time only if it's greater than 0
+    const minutes= Math.floor(time / 60);
+    let seconds = time % 60;
+    seconds= seconds<10 ?'0'+seconds : seconds;
+    let timeover=`${minutes}:${seconds}`;
+    countdown.innerHTML=timeover
+    time--;
+    
+    if(timeover==='0:00'){
+        musicAudio.pause();
+        loseAudio.play();
+       gameOverModel.classList.remove('visibilty');
+       overly.classList.remove('visibilty'); 
+       clearInterval(interval);
+       correct=0;
+    }
+    
 }
-
 // Reset the board after a match or flip
 function resetBoard() {
   [hasFlippedCard, lockBoard] = [false, false];
