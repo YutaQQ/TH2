@@ -17,7 +17,7 @@ let firstBackFace, secondBackFace;
 let randomPos;
 let movesCount = 0;
 let startingMinutes = 1; // Starting time in minutes
-let time; // Time in seconds (initialized later)
+let time = startingMinutes * 120;// Time in seconds (initial
 let interval;
 let correctMatches = 0;
 
