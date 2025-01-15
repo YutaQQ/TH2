@@ -44,17 +44,17 @@ function startGame() {
 
 // Open modal with stats
 const openModal = () => {
-  modal.classList.remove('visibilty');
-  overlay.classList.remove('visibilty');
+  modal.classList.remove('visibility');
+  overlay.classList.remove('visibility');
   movesModel.textContent = movesCount;
   secondModel.textContent = countdown.textContent;
 };
 
 // Close modal and reload the page
 const closeModal = () => {
-  modal.classList.add('visibilty');
-  overlay.classList.add('visibilty');
-  gameOverModal.classList.add('visibilty');
+  modal.classList.add('visibility');
+  overlay.classList.add('visibility');
+  gameOverModal.classList.add('visibility');
   location.reload();
 };
 
@@ -70,8 +70,8 @@ function startTimer() {
   if (timeDisplay === '0:00') {
     musicAudio.pause();
     loseAudio.play();
-    gameOverModal.classList.remove('visibilty');
-    overlay.classList.remove('visibilty');
+    gameOverModal.classList.remove('visibility');
+    overlay.classList.remove('visibility');
     clearInterval(interval);
     correctMatches = 0;
   }
@@ -90,8 +90,8 @@ function checkForMatch() {
     setTimeout(() => {
       matchAudio.play();
       lockBoard = false;
-      firstCard.classList.add('visibilty');
-      secondCard.classList.add('visibilty');
+      firstCard.classList.add('visibility');
+      secondCard.classList.add('visibility');
       resetBoard();
       correctMatches++;
     }, 1000);
