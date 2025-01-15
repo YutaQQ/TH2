@@ -51,17 +51,17 @@ function startGame() {
 
 // Open modal with stats
 const openModal = () => {
-  modal.classList.remove('visibility');
-  overlay.classList.remove('visibility');
+  modal.classList.remove('visibilty');
+  overlay.classList.remove('visibilty');
   movesModel.textContent = movesCount;
   secondModel.textContent = countdown.textContent;
 };
 
 // Close modal and reload the page
 const closeModal = () => {
-  modal.classList.add('visibility');
-  overlay.classList.add('visibility');
-  gameOverModal.classList.add('visibility');
+  modal.classList.add('visibilty');
+  overlay.classList.add('visibilty');
+  gameOverModal.classList.add('visibilty');
   clearInterval(interval); // Clear the timer
   location.reload();
 };
@@ -99,8 +99,8 @@ function checkForMatch() {
     setTimeout(() => {
       matchAudio.play();
       lockBoard = false;
-      firstCard.classList.add('visibility');
-      secondCard.classList.add('visibility');
+      firstCard.classList.add('visibilty');
+      secondCard.classList.add('visibilty');
       resetBoard();
       correctMatches++;
 
