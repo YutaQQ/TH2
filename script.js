@@ -16,8 +16,8 @@ let firstCard, secondCard;
 let firstBackFace, secondBackFace;
 let randomPos;
 let movesCount = 0;
-let startingMinutes = 1; // Adjust starting time here
-let time = startingMinutes * 60; // Time in seconds
+let startingMinutes = 1; // Starting time in minutes
+let time; // Time in seconds (initialized later)
 let interval;
 let correctMatches = 0;
 
@@ -29,8 +29,13 @@ const musicAudio = new Audio('audio/music.mp3');
 
 /******** Functions ********/
 
-// Starts the game with flipped cards animation
+// Starts the game with flipped cards animation and initializes the timer
 function startGame() {
+  // Reset time and moves when the game starts
+  time = startingMinutes * 60; // Initialize the timer correctly
+  movesCount = 0;
+  movesDisplay.textContent = movesCount; // Reset moves display
+
   cards.forEach(card => {
     card.classList.add('flip');
   });
@@ -63,22 +68,20 @@ const closeModal = () => {
 
 // Start the countdown timer
 function startTimer() {
-  const minutes = Math.floor(time / 60);
-  let seconds = time % 60;
-  seconds = seconds < 10 ? '0' + seconds : seconds;
-  const timeDisplay = `${minutes}:${seconds}`;
-  countdown.innerHTML = timeDisplay;
-
-  if (time === 0) { // Stop the timer when time runs out
+  if (time <= 0) { // Stop the timer when it runs out
     clearInterval(interval);
     musicAudio.pause();
     loseAudio.play();
     gameOverModal.classList.remove('visibility');
     overlay.classList.remove('visibility');
-    correctMatches = 0;
-  } else {
-    time--; // Decrement the time only if it's greater than 0
+    return;
   }
+
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+  countdown.innerHTML = `${minutes}:${seconds}`;
+  time--; // Decrement the time only if it's greater than 0
 }
 
 // Reset the board after a match or flip
