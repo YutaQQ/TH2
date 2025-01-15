@@ -65,15 +65,16 @@ function startTimer() {
   seconds = seconds < 10 ? '0' + seconds : seconds;
   const timeDisplay = `${minutes}:${seconds}`;
   countdown.innerHTML = timeDisplay;
-  time--;
 
-  if (timeDisplay === '0:00') {
+  if (time === 0) { // ตรวจสอบว่าหมดเวลาแล้วหรือยัง
     musicAudio.pause();
     loseAudio.play();
     gameOverModal.classList.remove('visibility');
     overlay.classList.remove('visibility');
     clearInterval(interval);
     correctMatches = 0;
+  } else {
+    time--; // ลดค่าเวลาเฉพาะเมื่อยังไม่หมด
   }
 }
 
