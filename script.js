@@ -16,8 +16,8 @@ let firstCard, secondCard;
 let firstBackFace, secondBackFace;
 let randomPos;
 let movesCount = 0;
-let startingMinutes = 1;
-let time = startingMinutes * 120;
+let startingMinutes = 1; // Adjust starting time here
+let time = startingMinutes * 60; // Time in seconds
 let interval;
 let correctMatches = 0;
 
@@ -40,6 +40,8 @@ function startGame() {
       card.classList.remove('flip');
     });
   }, 1000);
+
+  interval = setInterval(startTimer, 1000); // Start the timer when the game begins
 }
 
 // Open modal with stats
@@ -55,6 +57,7 @@ const closeModal = () => {
   modal.classList.add('visibility');
   overlay.classList.add('visibility');
   gameOverModal.classList.add('visibility');
+  clearInterval(interval); // Clear the timer
   location.reload();
 };
 
@@ -66,15 +69,15 @@ function startTimer() {
   const timeDisplay = `${minutes}:${seconds}`;
   countdown.innerHTML = timeDisplay;
 
-  if (time === 0) { // ตรวจสอบว่าหมดเวลาแล้วหรือยัง
+  if (time === 0) { // Stop the timer when time runs out
+    clearInterval(interval);
     musicAudio.pause();
     loseAudio.play();
     gameOverModal.classList.remove('visibility');
     overlay.classList.remove('visibility');
-    clearInterval(interval);
     correctMatches = 0;
   } else {
-    time--; // ลดค่าเวลาเฉพาะเมื่อยังไม่หมด
+    time--; // Decrement the time only if it's greater than 0
   }
 }
 
@@ -95,6 +98,17 @@ function checkForMatch() {
       secondCard.classList.add('visibility');
       resetBoard();
       correctMatches++;
+
+      // If all cards are matched, end the game
+      if (correctMatches === 6) {
+        setTimeout(() => {
+          clearInterval(interval);
+          musicAudio.pause();
+          winAudio.play();
+          openModal();
+          correctMatches = 0;
+        }, 900);
+      }
     }, 1000);
   } else {
     lockBoard = true;
@@ -114,13 +128,12 @@ function checkForMatch() {
     musicAudio.play();
   }, 4500);
 
-  startGame();
-
   cards.forEach(card => {
     randomPos = Math.trunc(Math.random() * 12);
     card.style.order = randomPos;
   });
-  interval = setInterval(startTimer, 1000);
+
+  startGame(); // Start the game after shuffling
 })();
 
 /******** Moves Count ********/
@@ -134,6 +147,7 @@ overlay.addEventListener('click', closeModal);
 
 // Restart button to reload the page
 restartBtn.addEventListener('click', () => {
+  clearInterval(interval); // Clear the timer before restarting
   location.reload();
 });
 
@@ -165,16 +179,5 @@ cards.forEach((card, index) => {
     }
 
     countMoves();
-
-    // If all cards are matched, display the modal
-    if (correctMatches === 6) {
-      setTimeout(() => {
-        clearInterval(interval);
-        musicAudio.pause();
-        winAudio.play();
-        openModal();
-        correctMatches = 0;
-      }, 900);
-    }
   });
 });
